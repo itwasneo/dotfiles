@@ -1,10 +1,21 @@
 #!/bin/bash
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
 
 # tmux ------------------------------------------------------------------------
 src_dir="$HOME"
 dest_dir="$HOME/git/dotfiles"
 filename=".tmux.conf"
-cp "$src_dir/$filename" "$dest_dir"
-echo "File $filename copied from $src_dir to $dest_dir"
+if cp "$src_dir/$filename" "$dest_dir"; then
+    echo -e "${GREEN}  ${NC}tmux configuration is updated."
+fi
 # =============================================================================
 
+# zsh -------------------------------------------------------------------------
+src_dir="$HOME"
+dest_dir="$HOME/git/dotfiles"
+filename=".zshrc"
+if cp "$src_dir/$filename" "$dest_dir"; then
+    echo -e "${GREEN}  ${NC}zsh configuration is updated."
+fi
+# =============================================================================

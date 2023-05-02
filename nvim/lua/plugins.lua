@@ -10,8 +10,7 @@ vim.cmd [[packadd packer.nvim]]
 packer.startup(function(use)
     use 'wbthomason/packer.nvim' -- Package Installer
 
-    use 'kyazdani42/nvim-web-devicons'
-    use 'L3MON4D3/LuaSnip' -- Snippet
+    use 'L3MON4D3/LuaSnip'       -- Snippet
 
 
     -- Completion -------------------------------------------------------------
@@ -26,6 +25,7 @@ packer.startup(function(use)
     use 'williamboman/mason-lspconfig.nvim' -- Plugin between mason and lspconfig
     use 'neovim/nvim-lspconfig'             -- LSP Base
     use 'onsails/lspkind-nvim'              -- VS Code like pictograms
+    use 'jose-elias-alvarez/null-ls.nvim'   -- Additional Diagnostics and Formatting
     -- ========================================================================
 
 
@@ -51,12 +51,13 @@ packer.startup(function(use)
 
 
     -- Other Utililities ------------------------------------------------------
-    use 'windwp/nvim-autopairs'       -- Pair brackets
-    use 'windwp/nvim-ts-autotag'      -- Pair html tags
-    use 'norcalli/nvim-colorizer.lua' -- For previewing colors in files (css)
-    use 'akinsho/nvim-bufferline.lua' -- To use tabs like buffers
-    use 'akinsho/toggleterm.nvim'     -- Terminal Wrapper inside Neovim
-    use 'nvim-lualine/lualine.nvim'   -- Statusline
+    use 'windwp/nvim-autopairs'        -- Pair brackets
+    use 'windwp/nvim-ts-autotag'       -- Pair html tags
+    use 'norcalli/nvim-colorizer.lua'  -- For previewing colors in files (css)
+    use 'akinsho/nvim-bufferline.lua'  -- To use tabs like buffers
+    use 'akinsho/toggleterm.nvim'      -- Terminal Wrapper inside Neovim
+    use 'nvim-lualine/lualine.nvim'    -- Statusline
+    use 'kyazdani42/nvim-web-devicons' -- Icons
     -- ========================================================================
 
 

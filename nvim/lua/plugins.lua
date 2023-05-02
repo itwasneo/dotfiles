@@ -12,10 +12,6 @@ packer.startup(function(use)
 
     use 'kyazdani42/nvim-web-devicons'
     use 'L3MON4D3/LuaSnip' -- Snippet
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-    } -- Treesitter
 
 
     -- Completion -------------------------------------------------------------
@@ -36,6 +32,14 @@ packer.startup(function(use)
     -- Git --------------------------------------------------------------------
     use 'lewis6991/gitsigns.nvim' -- Git signs on the gutter
     use 'dinhhuy258/git.nvim'     -- Git blame, diff
+    -- ========================================================================
+
+
+    -- Treesitter =============================================================
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+    }
     -- ========================================================================
 
 

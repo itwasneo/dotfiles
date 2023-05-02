@@ -9,7 +9,7 @@ ts.setup {
     },
     indent = {
         enable = true,
-        disable = {}
+        disable = { "yaml" }
     },
     ensure_installed = {
         'rust',
@@ -17,9 +17,12 @@ ts.setup {
         'json',
         'css',
         'html',
+        'toml',
+        'yaml',
         'markdown',
         'markdown_inline'
     },
+    sync_install = false,
     autotag = {
         enable = true
     }

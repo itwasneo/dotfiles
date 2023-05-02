@@ -14,7 +14,7 @@ function M.setup()
     null_ls.setup({
         debug = false,
         sources = {
-            formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote" } }),
+            formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
             formatting.rustfmt.with({ extra_args = { "--edition=2021" } }),
             formatting.stylua,
             -- formatting.black.with({ extra_args = { "--fast" } }),

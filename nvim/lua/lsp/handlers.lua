@@ -94,6 +94,9 @@ M.on_attach = function(client, bufnr)
     if client.name == "tsserver" then
         client.server_capabilities.document_formatting = false
     end
+    if client.name == "rust_analyzer" then
+        client.server.capabilities.document_formatting = false
+    end
     lsp_keymaps(bufnr)
     lsp_highlight_document(client, bufnr)
     lsp_format_document(client)

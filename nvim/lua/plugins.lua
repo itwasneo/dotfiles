@@ -51,6 +51,7 @@ packer.startup(function(use)
     use 'windwp/nvim-ts-autotag'      -- Pair html tags
     use 'norcalli/nvim-colorizer.lua' -- For previewing colors in files (css)
     use 'akinsho/nvim-bufferline.lua' -- To use tabs like buffers
+    use 'akinsho/toggleterm.nvim'     -- Terminal Wrapper inside Neovim
     use 'nvim-lualine/lualine.nvim'   -- Statusline
     -- ========================================================================
 

@@ -1,4 +1,4 @@
-local lsp_config_status, lspconfig = pcall(require, 'lspconfig')
+local lsp_config_status, lspconfig = pcall(require, "lspconfig")
 if not lsp_config_status then
     return
 end
@@ -6,7 +6,7 @@ end
 local on_attach = require("lsp.handlers").on_attach
 local capabilities = require("lsp.handlers").capabilities
 
-
+-- Lua ========================================================================
 lspconfig.lua_ls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
@@ -14,11 +14,11 @@ lspconfig.lua_ls.setup({
         Lua = {
             runtime = {
                 -- Tell the language server which version of Lua you're using (most Likely LuaJIT in the case of NeoVim)
-                version = 'LuaJIT',
+                version = "LuaJIT",
             },
             diagnostics = {
                 -- Get the language server to recognize the 'vim' global
-                globals = { 'vim' }
+                globals = { "vim" },
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
@@ -27,11 +27,13 @@ lspconfig.lua_ls.setup({
             -- Do not send telemetry data containinga randomized but unique identifier
             telemetry = {
                 enable = false,
-            }
-        }
-    }
+            },
+        },
+    },
 })
+-- ============================================================================
 
+-- Rust =======================================================================
 lspconfig.rust_analyzer.setup({
     on_attach = on_attach,
     capabilities = capabilities,
@@ -49,13 +51,22 @@ lspconfig.rust_analyzer.setup({
                 },
             },
             procMacro = {
-                enable = true
-            }
-        }
-    }
+                enable = true,
+            },
+        },
+    },
 })
+-- ============================================================================
 
-lspconfig.cssls.setup {
+-- CSS ========================================================================
+lspconfig.cssls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
-}
+})
+-- ============================================================================
+
+-- Typescript/Javascript ======================================================
+lspconfig.tsserver.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})

@@ -20,6 +20,7 @@ M.setup = function()
         severity_sort = true,
         float = {
             focusable = false,
+            border = "rounded",
             minimal = true,
             source = false,
             header = "",
@@ -29,9 +30,13 @@ M.setup = function()
 
     vim.diagnostic.config(config)
 
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {})
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+        border = "rounded",
+    })
 
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {})
+    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+        border = "rounded",
+    })
 
     require("lsp.null-ls").setup()
 end
@@ -83,7 +88,7 @@ local function lsp_keymaps(bufnr)
         bufnr,
         "n",
         "<C-l>",
-        '<cmd> lua vim.diagnostic.open_float({focusable = false, source = false, header = "", prefix = "  ",})<CR>',
+        '<cmd> lua vim.diagnostic.open_float({focusable = false, border="rounded", source = false, header = "", prefix = "  ",})<CR>',
         opts
     )
     vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])

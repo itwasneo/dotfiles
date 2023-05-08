@@ -70,3 +70,11 @@ lspconfig.tsserver.setup({
     on_attach = on_attach,
     capabilities = capabilities,
 })
+-- ============================================================================
+
+-- Ada ========================================================================
+lspconfig.als.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+-- ============================================================================

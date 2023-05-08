@@ -16,7 +16,7 @@ function M.setup()
         sources = {
             formatting.prettier,
             formatting.rustfmt.with({ extra_args = { "--edition=2021" } }),
-            formatting.stylua,
+            -- formatting.stylua,
             -- formatting.black.with({ extra_args = { "--fast" } }),
             -- diagnostics.flake8,
         },

@@ -30,6 +30,9 @@ export PATH=/opt/graalvm-ce-java19-22.3.1/bin:$PATH
 export GRAALVM_HOME=/opt/graalvm-ce-java19-22.3.1
 export JAVA_HOME=/usr/lib/jvm/java-19-openjdk
 
+# Ada Paths
+export PATH=/opt/alr-1.2.2-bin-x86_64-linux/bin:$PATH # alire package manager for Ada
+
 # Util
 alias ..='cd ..'
 alias ...='cd ../..'

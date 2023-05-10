@@ -1,6 +1,6 @@
 # ⚙️ dotfiles
 
-configure deez dots
+set deez dots
 
 ## 📜 About .sh files
 
@@ -16,8 +16,9 @@ This is for updating and setting up the local configuration files of following p
 
 ## 🗔 About NeoVim
 
-Although I'm still a dummy when it comes to **vim**, I configured this setup by myself. It is entirely lua based.There
-are couple of links that I want to share which also influenced this configuration:
+Although I'm still a dummy when it comes to **vim**, I configured this setup by myself. It is **very very simplistic** and serves
+enough features. It is entirely lua based.There are couple of links that I want to share which also influenced
+this configuration:
 
 - [devaslife's NeoVim setup video](https://www.youtube.com/watch?v=ajmK0ZNcM4Q)
 - [devaslife's NeoVim setup article](https://blog.inkdrop.app/my-neovim-setup-for-react-typescript-tailwind-css-etc-in-2022-a7405862c9a4)
@@ -38,13 +39,14 @@ I use **packer** for plugin management.
   - git
 - Treesitter
 - Telescope
-- Neosolarized colorscheme
+- Neosolarized colorscheme _Solarized Dark theme_
 - Other
   - autopairs _Pair Brackets_
   - autotag _Pair Html tags_
   - bufferline _Tabs like buffers_
   - toggleterm _Floating Terminal_
   - lualine _Status Line_
+  - nvim-comment _Comment Toggler_
 
 ### Screenshots
 

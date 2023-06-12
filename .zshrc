@@ -50,3 +50,7 @@ alias gw='cd ~/workspace'
 alias dcud='docker-compose up -d'
 alias dcd='docker-compose down'
 alias dca='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+
+# cargo
+alias cbl='RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo build'
+alias cblr='RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo build --release'

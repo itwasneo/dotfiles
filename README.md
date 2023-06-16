@@ -2,6 +2,13 @@
 
 set deez dots
 
+## About **dotfiles** script
+
+I'm trying to convert my entire development setup from bash scripts to ansible progressively. This file serves as a
+starting point for the further automation with ansible playbooks. If you want to learn about the details checkout:
+
+- [TheAltF4Stream's great video](https://www.youtube.com/watch?v=V_Cj_p6se3k)
+
 ## 📜 About .sh files
 
 I'm configuring and keeping my setups updated through .sh files.

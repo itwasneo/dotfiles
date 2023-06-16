@@ -29,6 +29,8 @@ fi
 
 cd "$DOTFILES_DIR"
 
-ansible-playbook --diff "$DOTFILES_DIR/main.yml"
+# In the following command, ask-become-pass allows us to run main.yml playbook as root.
+# Since it does package installation with pacman, it needs root privileges.
+ansible-playbook --diff "$DOTFILES_DIR/main.yml" --ask-become-pass
 
 

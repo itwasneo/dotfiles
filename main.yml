@@ -92,13 +92,19 @@
     - name: Installing utility tools
       community.general.pacman:
         name:
+          - git
+          - github-cli
           - gnome-tweaks
           - xclip
           - ripgrep
-          - github-cli
           - neovim-nvim-treesitter
           - noto-fonts-emoji
+          - ncdu
         state: present
+    - name: Setting up JS/Node dependencies with pacman
+      community.general.pacman:
+        name:
+          - nodejs
     - name: Setting up Java dependencies with pacman
       community.general.pacman:
         name:

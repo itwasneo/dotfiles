@@ -5,8 +5,14 @@ set -e
 SSH_DIR="$HOME/.ssh"
 DOTFILES_DIR="$PWD"
 
+# Checking and installing ansible if it doesn't exist
 if ! [ -x "$(command -v ansible)" ]; then
     sudo pacman -S ansible --noconfirm
+fi
+
+# Cloning "dotfiles" repo
+if ! [[ -d "$HOME/git/dotfiles" ]]; then
+    git clone https://github.com/itwasneo/dotfiles.git $HOME/git
 fi
 
 if ! [[ -f "$SSH_DIR/id_rsa" ]]; then

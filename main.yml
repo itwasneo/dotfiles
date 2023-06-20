@@ -18,6 +18,13 @@
           EndSection
         dest: /etc/X11/xorg.conf.d/10-monitors.conf
         mode: 0644
+    - name: Updating the master package list
+      community.general.pacman:
+        update_cache: true
+    - name: Installing Jetbrains Mono Nerd Font
+      community.general.pacman:
+        name: ttf-jetbrains-mono-nerd
+        state: present
     - name: Improving font rendering
       block:
         - name: Creating global config file
@@ -86,9 +93,6 @@
           command: sudo sed -i '/^#export FREETYPE_PROPERTIES/s/^#//' /etc/profile.d/freetype2.sh
         - name: Building font cache
           command: sudo fc-cache -fv
-    - name: Updating the master package list
-      community.general.pacman:
-        update_cache: true
     - name: Installing utility tools
       community.general.pacman:
         name:
@@ -117,3 +121,12 @@
       community.general.pacman:
         name: ruby
         state: present
+    - name: Checking whether aws-cli is installed or not
+      shell: command -v aws
+      register: aws_check
+    - name: Setting up AWS for local development environment
+      shell: |
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip awscliv2.zip
+        sudo ./aws/install
+      when: aws_check is failed

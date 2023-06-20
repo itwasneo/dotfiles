@@ -1,0 +1,10 @@
+---
+- name: Setting up OS
+  hosts: localhost
+  become: yes
+  become_user: root
+  become_method: su
+  roles:
+    - os
+    - util
+    - dev

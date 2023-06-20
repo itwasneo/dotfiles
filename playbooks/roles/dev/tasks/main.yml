@@ -1,0 +1,26 @@
+---
+- name: Setting up JS/Node dependencies with pacman
+  community.general.pacman:
+    name:
+      - nodejs
+- name: Setting up Java dependencies with pacman
+  community.general.pacman:
+    name:
+      - jre-openjdk
+      - jre-openjdk-headless
+      - jdk-openjdk
+      - openjdk-doc
+      - openjdk-src
+- name: Setting up Ruby dependencies with pacman
+  community.general.pacman:
+    name: ruby
+    state: present
+- name: Checking whether aws-cli is installed or not
+  shell: command -v aws
+  register: aws_check
+- name: Setting up AWS for local development environment
+  shell: |
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    unzip awscliv2.zip
+    sudo ./aws/install
+  when: aws_check is failed

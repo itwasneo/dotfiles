@@ -1,0 +1,13 @@
+---
+- name: Installing utility tools
+  community.general.pacman:
+    name:
+      - git
+      - github-cli
+      - gnome-tweaks
+      - xclip
+      - ripgrep
+      - neovim-nvim-treesitter
+      - noto-fonts-emoji
+      - ncdu
+    state: present

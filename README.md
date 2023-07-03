@@ -1,15 +1,15 @@
-# ⚙️ dotfiles
+# dotfiles ⚙️
 
 set deez dots
 
 ## About **dotfiles** script
 
-I'm trying to convert my entire development setup from bash scripts to ansible progressively. This file serves as a
+I'm trying to convert my entire development setup from bash scripts to ansible playbooks progressively. This file serves as a
 starting point for the further automation with ansible playbooks. If you want to learn about the details checkout:
 
 - [TheAltF4Stream's great video](https://www.youtube.com/watch?v=V_Cj_p6se3k)
 
-## 📜 About .sh files
+## About .sh files
 
 I'm configuring and keeping my setups updated through .sh files.
 
@@ -21,7 +21,7 @@ This is for updating and setting up the local configuration files of following p
 - tmux
 - NeoVim
 
-## 🗔 About NeoVim
+## About NeoVim
 
 Although I'm still a dummy when it comes to **vim**, I configured this setup by myself. It is **very very simplistic** and serves
 enough features. It is entirely lua based.There are couple of links that I want to share which also influenced
@@ -64,7 +64,7 @@ I use **packer** for plugin management.
 ![telescope](./screenshots/neovim_screenshot_telescope.png)
 ![telescope with fuzzy finder](./screenshots/neovim_screenshot_telescope_with_fuzzy_finder.png)
 
-## 🪟 About tmux with NeoVim conflict
+## About tmux with NeoVim conflict
 
 I don't know why, but I spent too much time to support RGB colors in NeoVim inside a tmux session. Following line that
 should reside in your `.tmux.conf` file was the answer for me.

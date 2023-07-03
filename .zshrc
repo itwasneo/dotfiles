@@ -33,6 +33,9 @@ export JAVA_HOME=/usr/lib/jvm/java-19-openjdk
 # Ada Paths
 export PATH=/opt/alr-1.2.2-bin-x86_64-linux/bin:$PATH # alire package manager for Ada
 
+# fly io
+export PATH=/home/itwasneo/.fly/bin:$PATH
+
 # Util
 alias ..='cd ..'
 alias ...='cd ../..'

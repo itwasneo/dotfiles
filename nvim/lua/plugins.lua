@@ -31,7 +31,7 @@ packer.startup(function(use)
     use("dinhhuy258/git.nvim")     -- Git blame, diff
     -- ========================================================================
 
-    -- Treesitter =============================================================
+    -- Treesitter -------------------------------------------------------------
     use({
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
@@ -53,6 +53,20 @@ packer.startup(function(use)
     use("nvim-lualine/lualine.nvim")    -- Statusline
     use("kyazdani42/nvim-web-devicons") -- Icons
     use("terrortylor/nvim-comment")     -- Toggle Comment
+    -- ========================================================================
+
+    -- ChatGPT ----------------------------------------------------------------
+    use({
+        "jackMort/ChatGPT.nvim",
+        config = function()
+            require("chatgpt").setup()
+        end,
+        requires = {
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim"
+        }
+    })
     -- ========================================================================
 
     -- Colorscheme ------------------------------------------------------------

@@ -72,12 +72,25 @@ lspconfig.tsserver.setup({
 })
 -- ============================================================================
 
+-- HTML =======================================================================
+lspconfig.html.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
 -- Ada ========================================================================
 lspconfig.als.setup({
     on_attach = on_attach,
     capabilities = capabilities,
 })
 -- ============================================================================
+
+-- Java =======================================================================
+lspconfig.jdtls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = { 'jdtls' },
+})
 
 -- Docker =====================================================================
 lspconfig.dockerls.setup {}

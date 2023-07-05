@@ -9,6 +9,7 @@ xset r rate 200 50
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=2000
 export SAVEHIST=$HISTSIZE
+export EDITOR=/usr/bin/nvim
 setopt hist_ignore_all_dups # Don't save duplicate commands
 setopt hist_ignore_space # Trick to prevent particular entries from being recorded into history
 

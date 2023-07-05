@@ -4,7 +4,7 @@ if (not status) then return end
 
 local actions = require('telescope.actions')
 
-function telescope_buffer_dir()
+function TelescopeBufferDir()
     return vim.fn.expand('%:p:h')
 end
 
@@ -12,9 +12,28 @@ local fb_actions = require 'telescope'.extensions.file_browser.actions
 
 telescope.setup {
     defaults = {
+        vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--trim"  -- Removes indentation for found lines
+        },
         mappings = {
             n = {
                 ['q'] = actions.close
+            }
+        }
+    },
+    pickers = {
+        buffers = {
+            mappings = {
+                i = {
+                    ["<c-d>"] = actions.delete_buffer + actions.move_to_top,
+                }
             }
         }
     },
@@ -51,5 +70,5 @@ vim.keymap.set('n', ';t', '<cmd>lua require("telescope.builtin").help_tags()<cr>
 vim.keymap.set('n', ';;', '<cmd>lua require("telescope.builtin").resume()<cr>', opts)
 vim.keymap.set('n', ';e', '<cmd>lua require("telescope.builtin").diagnostics()<cr>', opts)
 vim.keymap.set('n', 'sf',
-    '<cmd>lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", cwd = telescope_buffer_dir(), respect_git_ignore = false, hidden = true, grouped = true, previewer = false, initial_mode = "normal", layout_config = { height=40 }})<cr>',
+    '<cmd>lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", cwd = TelescopeBufferDir(), respect_git_ignore = false, hidden = true, grouped = true, previewer = false, initial_mode = "normal", layout_config = { height=40 }})<cr>',
     opts)

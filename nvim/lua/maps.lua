@@ -33,3 +33,6 @@ keymap.set("n", "<C-w><down>", "<C-w>-")
 
 -- Util
 keymap.set("n", "<leader>f", ":Format<cr>", { silent = true })
+
+-- Use space key instead of ':'
+keymap.set("n", "<space>", ":")

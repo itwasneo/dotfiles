@@ -16,6 +16,7 @@ setopt hist_ignore_space # Trick to prevent particular entries from being record
 export OPENSSL_DIR=/etc/ssl
 export OPENSSL_LIB_DIR=/usr/lib
 export OPENSSL_INCLUDE_DIR=/usr/include/openssl
+export OPENSSL_STATIC=0
 
 # Prompt
 PS1="%{$fg[green]%}%D{%H:%M}  %{$fg[yellow]%}%m%{$reset_color%}::%{$fg[yellow]%}%1d%{$reset_color%} %"
@@ -50,12 +51,34 @@ alias ll='ls -AGghl --color=auto'
 alias gg='cd ~/git'
 alias g~='cd ~'
 alias gw='cd ~/workspace'
+alias gsb='cd ~/git/sb'
 
 # Docker
 alias dcud='docker-compose up -d'
 alias dcd='docker-compose down'
 alias dca='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 
+function drmid {
+    if [ "$1" = "-f" ]; then
+        echo "Flag -f detected"
+        docker rmi -f $(docker images -f "dangling=true" -q)
+    elif [ -z "$1" ]; then
+        docker rmi $(docker images -f "dangling=true" -q)
+    else
+        echo "Invalid argument. Only '-f' for 'force' is allowed."
+    fi
+}
+
 # cargo
 alias cbl='RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo build'
 alias cblr='RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo build --release'
+
+# zellij
+alias z="zellij"
+
+# pkg-config
+export PKG_CONIG_PATH=/usr/lib/pkgconfig
+
+
+# Autostart inside Zellij session
+eval "$(zellij setup --generate-auto-start zsh)"

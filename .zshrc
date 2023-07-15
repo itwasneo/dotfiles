@@ -70,15 +70,18 @@ function drmid {
 }
 
 # cargo
-alias cbl='RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo build'
-alias cblr='RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo build --release'
+alias cbm='RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build'
+alias cbmr='RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build --release'
 
 # zellij
-alias z="zellij"
+# alias z="zellij"
 
 # pkg-config
 export PKG_CONIG_PATH=/usr/lib/pkgconfig
-
+export PKG_CONFIG_ALLOW_CROSS=1
+export PKG_CONFIG_ALL_STATIC=1
+export OPENSSL_SYS_USE_PKG_CONFIG=1
+export ZSTD_SYS_USE_PKG_CONFIG=1
 
 # Autostart inside Zellij session
-eval "$(zellij setup --generate-auto-start zsh)"
+# eval "$(zellij setup --generate-auto-start zsh)"

@@ -23,7 +23,6 @@ packer.startup(function(use)
     use("williamboman/mason-lspconfig.nvim") -- Plugin between mason and lspconfig
     use("neovim/nvim-lspconfig")             -- LSP Base
     use("onsails/lspkind-nvim")              -- VS Code like pictograms
-    use("jose-elias-alvarez/null-ls.nvim")   -- Additional Diagnostics and Formatting
     -- ========================================================================
 
     -- Git --------------------------------------------------------------------
@@ -53,17 +52,6 @@ packer.startup(function(use)
     use("nvim-lualine/lualine.nvim")    -- Statusline
     use("kyazdani42/nvim-web-devicons") -- Icons
     use("terrortylor/nvim-comment")     -- Toggle Comment
-    -- ========================================================================
-
-    -- ChatGPT ----------------------------------------------------------------
-    use({
-        "jackMort/ChatGPT.nvim",
-        requires = {
-            "MunifTanjim/nui.nvim",
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim"
-        }
-    })
     -- ========================================================================
 
     -- Colorscheme ------------------------------------------------------------

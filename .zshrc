@@ -1,4 +1,5 @@
 # Terminal Autocomplete
+
 source $HOME/git/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 autoload -U colors && colors
 
@@ -26,12 +27,14 @@ export PATH=/home/itwasneo/.local/bin:$PATH
 export PATH=/home/itwasneo/.cargo/bin:$PATH
 export PATH=/opt/apache-maven-3.9.3/bin:$PATH
 export PATH=/opt/apache-jmeter-5.5/bin:$PATH
-export PATH=/usr/lib/jvm/java-20-openjdk/bin:$PATH
+# export PATH=/usr/lib/jvm/java-20-openjdk/bin:$PATH
+export PATH=/usr/lib/jvm/jdk-21/bin:$PATH
 
 # Java Paths
 # export PATH=/opt/graalvm-ce-java19-22.3.1/bin:$PATH
 # export GRAALVM_HOME=/opt/graalvm-ce-java19-22.3.1
-export JAVA_HOME=/usr/lib/jvm/java-20-openjdk
+# export JAVA_HOME=/usr/lib/jvm/java-20-openjdk
+export JAVA_HOME=/usr/lib/jvm/jdk-21
 
 # Ada Paths
 export PATH=/opt/alr-1.2.2-bin-x86_64-linux/bin:$PATH # alire package manager for Ada

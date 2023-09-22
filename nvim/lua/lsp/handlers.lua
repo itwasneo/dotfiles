@@ -3,9 +3,9 @@ local M = {}
 M.setup = function()
     local signs = {
         { name = "DiagnosticSignError", text = " " },
-        { name = "DiagnosticSignWarn",  text = " " },
-        { name = "DiagnosticSignHint",  text = " " },
-        { name = "DiagnosticSignInfo",  text = " " },
+        { name = "DiagnosticSignWarn", text = " " },
+        { name = "DiagnosticSignHint", text = " " },
+        { name = "DiagnosticSignInfo", text = " " },
     }
 
     for _, sign in ipairs(signs) do
@@ -37,8 +37,6 @@ M.setup = function()
     vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
         border = "rounded",
     })
-
-    require("lsp.null-ls").setup()
 end
 
 local function lsp_highlight_document(client, bufnr)

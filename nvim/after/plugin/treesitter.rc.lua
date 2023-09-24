@@ -25,5 +25,5 @@ ts.setup {
     sync_install = false,
     autotag = {
         enable = true
-    }
+    },
 }

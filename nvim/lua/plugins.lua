@@ -41,7 +41,6 @@ lazy.setup({
     "windwp/nvim-ts-autotag",       -- Pair html tags
     "norcalli/nvim-colorizer.lua",  -- For previewing colors in files (css)
     "akinsho/nvim-bufferline.lua",  -- To use tabs like buffers
-    "akinsho/toggleterm.nvim",      -- Terminal Wrapper inside Neovim
     "nvim-lualine/lualine.nvim",    -- Statusline
     "kyazdani42/nvim-web-devicons", -- Icons
     "terrortylor/nvim-comment",     -- Toggle Comment

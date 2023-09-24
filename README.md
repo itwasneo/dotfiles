@@ -50,7 +50,6 @@ I use **lazy** for plugin management.
   - autopairs _Pair Brackets_
   - autotag _Pair Html tags_
   - bufferline _Tabs like buffers_
-  - toggleterm _Floating Terminal_
   - lualine _Status Line_
   - nvim-comment _Comment Toggler_
 

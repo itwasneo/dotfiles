@@ -46,8 +46,6 @@ I use **lazy** for plugin management.
 - Treesitter
 - Telescope
 - Neosolarized colorscheme _Solarized Dark theme_
-  The [configuration](./nvim/after/plugin/chatgpt.rc.lua) of this plugin requires some secret management. I
-  used [**doppler**](https://www.doppler.com/) for this task, you might want to check it out.
 - Other
   - autopairs _Pair Brackets_
   - autotag _Pair Html tags_

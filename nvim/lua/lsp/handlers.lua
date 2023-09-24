@@ -98,9 +98,9 @@ M.on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
     end
     -- This is sus
-    if client.name == "rust_analyzer" then
-        client.server_capabilities.documentFormattingProvider = false
-    end
+    -- if client.name == "rust_analyzer" then
+    --     client.server_capabilities.documentFormattingProvider = false
+    -- end
     lsp_keymaps(bufnr)
     lsp_highlight_document(client, bufnr)
     lsp_format_document(client)

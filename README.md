@@ -33,21 +33,19 @@ this configuration:
 
 ### Some features that I currently use
 
-I use **packer** for plugin management.
+I use **lazy** for plugin management.
 
 - Completion
 - LSP (tsserver, rust-analyzer, lua_ls, cssls)
   - mason
   - lspconfig
   - lspkind
-  - null-ls
 - Git
   - gitsigns
   - git
 - Treesitter
 - Telescope
 - Neosolarized colorscheme _Solarized Dark theme_
-- ChatGPT (new toy - it requires paid plan!!!)
   The [configuration](./nvim/after/plugin/chatgpt.rc.lua) of this plugin requires some secret management. I
   used [**doppler**](https://www.doppler.com/) for this task, you might want to check it out.
 - Other

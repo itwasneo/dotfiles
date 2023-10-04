@@ -52,6 +52,7 @@ I use **lazy** for plugin management.
   - bufferline _Tabs like buffers_
   - lualine _Status Line_
   - nvim-comment _Comment Toggler_
+  - noice _UI component Library (10/10 beautiful addition)
 
 ### Screenshots
 

@@ -35,6 +35,7 @@ vim.opt.si = true    -- Smart Indent
 vim.opt.wrap = false -- No Wrap Lines
 vim.opt.breakindent = true
 vim.opt.shiftwidth = 4
+vim.opt.colorcolumn = { 80 }
 -- ============================================================================
 
 

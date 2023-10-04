@@ -36,18 +36,30 @@ lazy.setup({
     "nvim-telescope/telescope-file-browser.nvim",
     -- ========================================================================
 
-    -- Other Utililities ------------------------------------------------------
-    "windwp/nvim-autopairs",        -- Pair brackets
-    "windwp/nvim-ts-autotag",       -- Pair html tags
-    "norcalli/nvim-colorizer.lua",  -- For previewing colors in files (css)
-    "akinsho/nvim-bufferline.lua",  -- To use tabs like buffers
-    "nvim-lualine/lualine.nvim",    -- Statusline
-    "kyazdani42/nvim-web-devicons", -- Icons
-    "terrortylor/nvim-comment",     -- Toggle Comment
-    -- ========================================================================
-
     -- Colorscheme ------------------------------------------------------------
     "svrana/neosolarized.nvim",
     "tjdevries/colorbuddy.nvim",
     -- ========================================================================
+
+    -- Other Utililities ------------------------------------------------------
+    "windwp/nvim-autopairs",                          -- Pair brackets
+    "windwp/nvim-ts-autotag",                         -- Pair html tags
+    "norcalli/nvim-colorizer.lua",                    -- For previewing colors in files (css)
+    "akinsho/nvim-bufferline.lua",                    -- To use tabs like buffers
+    "nvim-lualine/lualine.nvim",                      -- Statusline
+    "kyazdani42/nvim-web-devicons",                   -- Icons
+    "terrortylor/nvim-comment",                       -- Toggle Comment
+    { "shortcuts/no-neck-pain.nvim", version = "*" }, -- Center editor area
+    -- ========================================================================
+
+    -- Experimental -----------------------------------------------------------
+    {
+        "folke/noice.nvim", -- UI components
+        event = "VeryLazy",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        }
+    }
+
 })

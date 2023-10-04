@@ -49,6 +49,7 @@ lspconfig.rust_analyzer.setup({
                 buildScripts = {
                     enable = true,
                 },
+                features = "all",
             },
             procMacro = {
                 enable = true,
@@ -94,3 +95,10 @@ lspconfig.jdtls.setup({
 
 -- Docker =====================================================================
 lspconfig.dockerls.setup {}
+-- ============================================================================
+
+-- Markdown ===================================================================
+lspconfig.marksman.setup {
+    on_attach = onattach,
+    capabilities = capabilities,
+}

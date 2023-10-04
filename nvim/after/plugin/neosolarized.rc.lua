@@ -30,3 +30,8 @@ vim.api.nvim_command("highlight CursorLineNr guibg=#014759 guifg=#eee8d5")
 -- I don't like unnecessary code to be shown as comment. By default
 -- DiagnosticUnnecessary highlight group is link to Comment highlight group
 vim.api.nvim_command("highlight DiagnosticUnnecessary guibg=none guifg=none gui=none")
+-- ============================================================================
+
+-- Ruler at 80th column -------------------------------------------------------
+vim.api.nvim_command("highlight ColorColumn ctermbg=0 guibg=#014759")
+-- ============================================================================

@@ -35,3 +35,8 @@ vim.api.nvim_command("highlight DiagnosticUnnecessary guibg=none guifg=none gui=
 -- Ruler at 80th column -------------------------------------------------------
 vim.api.nvim_command("highlight ColorColumn ctermbg=0 guibg=#014759")
 -- ============================================================================
+
+-- Noice ----------------------------------------------------------------------
+vim.api.nvim_command("highlight NotifyBackground  guibg=#014759")
+vim.api.nvim_command("highlight NoiceCmdlinePopupBorder  guifg=#b58900")
+-- ============================================================================

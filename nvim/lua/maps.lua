@@ -12,9 +12,11 @@ keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- New tab
 keymap.set("n", "te", ":tabnew<Return>", { silent = true })
+
 -- Split window
 keymap.set("n", "ss", ":split<Return><C-w>w", { silent = true })
 keymap.set("n", "sv", ":vsplit<Return><C-w>w", { silent = true })
+
 -- Navigate windows
 keymap.set("n", "<Space>", "<C-w>w")
 keymap.set("", "s<left>", "<C-w>h")
@@ -25,6 +27,7 @@ keymap.set("", "sh", "<C-w>h")
 keymap.set("", "sk", "<C-w>k")
 keymap.set("", "sj", "<C-w>j")
 keymap.set("", "sl", "<C-w>l")
+
 -- Resize window
 keymap.set("n", "<C-w><left>", "<C-w><")
 keymap.set("n", "<C-w><right>", "<C-w>>")
@@ -36,3 +39,6 @@ keymap.set("n", "<leader>f", ":Format<cr>", { silent = true })
 
 -- Use space key instead of ':'
 keymap.set("n", "<space>", ":")
+
+-- Inc-rename shortcut
+keymap.set("n", "<leader>rn", ":IncRename ")

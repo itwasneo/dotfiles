@@ -22,7 +22,7 @@ M.setup = function()
             focusable = false,
             border = "rounded",
             minimal = true,
-            source = false,
+            source = true,
             header = "",
             prefix = "",
         },

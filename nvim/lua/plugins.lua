@@ -50,6 +50,7 @@ lazy.setup({
     "kyazdani42/nvim-web-devicons",                   -- Icons
     "terrortylor/nvim-comment",                       -- Toggle Comment
     { "shortcuts/no-neck-pain.nvim", version = "*" }, -- Center editor area
+    "smjonas/inc-rename.nvim",                        -- Rename symbol
     -- ========================================================================
 
     -- Experimental -----------------------------------------------------------

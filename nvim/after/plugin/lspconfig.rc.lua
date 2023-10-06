@@ -99,6 +99,6 @@ lspconfig.dockerls.setup {}
 
 -- Markdown ===================================================================
 lspconfig.marksman.setup {
-    on_attach = onattach,
+    on_attach = on_attach,
     capabilities = capabilities,
 }

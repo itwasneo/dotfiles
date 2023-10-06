@@ -27,7 +27,12 @@ lazy.setup({
     -- ========================================================================
 
     -- Treesitter -------------------------------------------------------------
-    "nvim-treesitter/nvim-treesitter",
+    "nvim-treesitter/nvim-treesitter",                 -- Syntax Highlighting
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects", -- Better Text Objects
+        after = "nvim-treesitter",
+        requires = "nvim-treesitter/nvim-treesitter",
+    },
     -- ========================================================================
 
     -- Telescope - Fuzzy Finder -----------------------------------------------

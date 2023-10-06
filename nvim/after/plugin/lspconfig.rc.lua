@@ -6,6 +6,10 @@ end
 local on_attach = require("lsp.handlers").on_attach
 local capabilities = require("lsp.handlers").capabilities
 
+require('lspconfig.ui.windows').default_options = {
+    border = "rounded"
+}
+
 -- Lua ========================================================================
 lspconfig.lua_ls.setup({
     on_attach = on_attach,

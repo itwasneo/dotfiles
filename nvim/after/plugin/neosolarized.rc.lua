@@ -6,7 +6,7 @@ n.setup({ comment_italics = true })
 
 -- Changing higlight groups of Floating windows -------------------------------
 vim.api.nvim_command("highlight NormalFloat guifg=#586e75 guibg=#002b36")
-vim.api.nvim_command("highlight FloatBorder guifg=#586e75")
+vim.api.nvim_command("highlight FloatBorder ctermfg=NONE ctermbg=NONE cterm=NONE guifg=#b58900")
 -- ============================================================================
 
 -- Defining highlight groups for LSP symbol highlighting ----------------------

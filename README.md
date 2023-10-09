@@ -43,7 +43,7 @@ I use **lazy** for plugin management.
 - Git
   - gitsigns
   - git
-- Treesitter
+- Treesitter (with textobjects)
 - Telescope
 - Neosolarized colorscheme _Solarized Dark theme_
 - Other
@@ -58,7 +58,6 @@ I use **lazy** for plugin management.
 
 ![neosolarized](./screenshots/neovim_screenshot_neosolarized.png)
 ![diagnostics](./screenshots/neovim_screenshot_diagnostics.png)
-![floaing terminal](./screenshots/neovim_screenshot_floating_terminal.png)
 ![document help](./screenshots/neovim_screenshot_document_help.png)
 ![telescope](./screenshots/neovim_screenshot_telescope.png)
 ![telescope with fuzzy finder](./screenshots/neovim_screenshot_telescope_with_fuzzy_finder.png)

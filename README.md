@@ -30,10 +30,11 @@ this configuration:
 - [devaslife's NeoVim setup video](https://www.youtube.com/watch?v=ajmK0ZNcM4Q)
 - [devaslife's NeoVim setup article](https://blog.inkdrop.app/my-neovim-setup-for-react-typescript-tailwind-css-etc-in-2022-a7405862c9a4)
 - [chris@machine's NeoVim IDE from Scratch series](https://www.youtube.com/watch?v=ctH-a-1eUME&list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ)
+- [Josean Martinez's youtube channel](https://www.youtube.com/@joseanmartinez/videos): This one has the latest structural approach, I really liked it.
 
 ### Some features that I currently use
 
-I use **lazy** for plugin management.
+I use **lazy** for plugin management. (I was using **packer** before; so during the transition I made a huge refactor.)
 
 - Completion
 - LSP (tsserver, rust-analyzer, lua_ls, cssls)
@@ -50,7 +51,6 @@ I use **lazy** for plugin management.
   - autopairs _Pair Brackets_
   - autotag _Pair Html tags_
   - bufferline _Tabs like buffers_
-  - lualine _Status Line_
   - nvim-comment _Comment Toggler_
   - noice _UI component Library (10/10 beautiful addition)
 

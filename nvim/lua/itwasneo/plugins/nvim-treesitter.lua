@@ -1,0 +1,40 @@
+return {
+    "nvim-treesitter/nvim-treesitter", -- Syntax Highlighting
+    event = { "BufReadPre", "BufNewFile" },
+    build = ":TsUpdate",
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter-textobjects"
+    },
+    config = function()
+        local treesitter = require("nvim-treesitter.configs")
+        treesitter.setup({
+            auto_install = false,
+            autotag = {
+                enable = true
+            },
+            ensure_installed = {
+                'rust',
+                'java',
+                'lua',
+                'json',
+                'css',
+                'html',
+                'toml',
+                'yaml',
+                'markdown',
+                'markdown_inline'
+            },
+            highlight = {
+                enable = true,
+                disable = { 'html' },
+            },
+            indent = {
+                enable = true,
+                disable = { "yaml" }
+            },
+            ignore_install = {},
+            modules = {},
+            sync_install = false,
+        })
+    end,
+}

@@ -1,11 +1,12 @@
 return {
-    "svrana/neosolarized.nvim",
+    "itwasneo/silense.nvim",
     priority = 1000,
     dependencies = {
         "tjdevries/colorbuddy.nvim",
     },
-    opts = {
-        comment_italics = true,
-        background_set = true,
-    },
+    config = function()
+        require("silense").setup({
+            comment_italics = true,
+        })
+    end
 }

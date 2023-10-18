@@ -10,8 +10,10 @@ keymap.set("n", "-", "<C-x>")
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
 
--- New tab
+-- Tab
 keymap.set("n", "te", ":tabnew<Return>", { silent = true })
+keymap.set("n", "<Tab>", "<cmd>tabnext<cr>", { silent = true })
+keymap.set("n", "<S-Tab>", "<cmd>tabprevious<cr>", { silent = true })
 
 -- Split window
 keymap.set("n", "ss", ":split<Return><C-w>w", { silent = true })

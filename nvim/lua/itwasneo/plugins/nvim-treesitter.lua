@@ -7,6 +7,14 @@ return {
     },
     config = function()
         local treesitter = require("nvim-treesitter.configs")
+
+        -- This setting is because of my 'runer' project ----------------------
+        vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+            pattern = { "*.runer" },
+            command = "setfiletype yaml"
+        })
+        -- ====================================================================
+
         treesitter.setup({
             auto_install = false,
             autotag = {

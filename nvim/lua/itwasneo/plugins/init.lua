@@ -1,3 +1,1 @@
-return {
-    -- "tjdevries/colorbuddy.nvim"
-}
+return {}

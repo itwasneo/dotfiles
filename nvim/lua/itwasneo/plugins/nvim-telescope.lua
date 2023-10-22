@@ -10,7 +10,7 @@ return {
     init = function()
         local telescope = require("telescope")
         local t_actions = require("telescope.actions")
-        local f_actions = require 'telescope'.extensions.file_browser.actions
+        local f_actions = require "telescope".extensions.file_browser.actions
         telescope.setup {
             defaults = {
                 vimgrep_arguments = {
@@ -21,6 +21,7 @@ return {
                     "--line-number",
                     "--column",
                     "--smart-case",
+                    "--hidden",
                     "--trim" -- Removes indentation for found lines
                 },
                 mappings = {
@@ -53,6 +54,7 @@ return {
                             ['D'] = f_actions.remove,
                             ['R'] = f_actions.rename,
                             ['h'] = f_actions.goto_parent_dir,
+                            ["<c-h>"] = f_actions.toggle_hidden,
                             ['/'] = function() vim.cmd('startinsert') end
                         }
                     }

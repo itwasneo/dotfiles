@@ -44,3 +44,6 @@ keymap.set("n", "<space>", ":")
 
 -- Inc-rename shortcut
 keymap.set("n", "<leader>rn", ":IncRename ")
+
+-- Insert Date
+keymap.set("n", "<leader>D", ":put =strftime('# %a %Y-%m-%d %H:%M%z')<CR>")

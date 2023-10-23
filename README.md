@@ -46,21 +46,12 @@ I use **lazy** for plugin management. (I was using **packer** before; so during 
   - git
 - Treesitter (with textobjects)
 - Telescope
-- Neosolarized colorscheme _Solarized Dark theme_
+- Silense colorscheme [my own theme](https://github.com/itwasneo/silense.nvim)
 - Other
   - autopairs _Pair Brackets_
   - autotag _Pair Html tags_
-  - bufferline _Tabs like buffers_
   - nvim-comment _Comment Toggler_
   - noice _UI component Library (10/10 beautiful addition)
-
-### Screenshots
-
-![neosolarized](./screenshots/neovim_screenshot_neosolarized.png)
-![diagnostics](./screenshots/neovim_screenshot_diagnostics.png)
-![document help](./screenshots/neovim_screenshot_document_help.png)
-![telescope](./screenshots/neovim_screenshot_telescope.png)
-![telescope with fuzzy finder](./screenshots/neovim_screenshot_telescope_with_fuzzy_finder.png)
 
 ## About tmux with NeoVim conflict
 

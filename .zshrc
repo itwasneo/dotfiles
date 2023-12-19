@@ -83,6 +83,7 @@ alias cbmr='RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build --release'
 export PKG_CONIG_PATH=/usr/lib/pkgconfig
 export PKG_CONFIG_ALLOW_CROSS=1
 export PKG_CONFIG_ALL_STATIC=1
+export PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=0
 export OPENSSL_SYS_USE_PKG_CONFIG=1
 export ZSTD_SYS_USE_PKG_CONFIG=1
 

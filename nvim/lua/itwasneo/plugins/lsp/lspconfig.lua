@@ -189,6 +189,7 @@ return {
             capabilities = capabilities,
             cmd = { 'jdtls' },
         })
+        -- ====================================================================
 
         -- Docker =============================================================
         lspconfig.dockerls.setup {}
@@ -199,5 +200,12 @@ return {
             on_attach = on_attach,
             capabilities = capabilities,
         }
+
+        -- Bash ===============================================================
+        lspconfig.bashls.setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+        }
+        -- ====================================================================
     end
 }

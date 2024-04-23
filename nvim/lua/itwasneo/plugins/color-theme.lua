@@ -4,7 +4,7 @@ return {
     config = function()
         require("silense").setup({
             comment_italics = true,
-            set_background = false, -- You can use this for transparent background
+            set_background = true, -- You can use this for transparent background
         })
     end
 }

@@ -14,10 +14,10 @@ export EDITOR=/usr/bin/nvim
 setopt hist_ignore_all_dups # Don't save duplicate commands
 setopt hist_ignore_space # Trick to prevent particular entries from being recorded into history
 
-# export OPENSSL_DIR=/etc/ssl
-# export OPENSSL_LIB_DIR=/usr/lib
-# export OPENSSL_INCLUDE_DIR=/usr/include/openssl
-# export OPENSSL_STATIC=0
+#export OPENSSL_DIR=/etc/ssl
+#export OPENSSL_LIB_DIR=/usr/lib
+#export OPENSSL_INCLUDE_DIR=/usr/include/openssl
+#export OPENSSL_STATIC=0
 
 # Prompt
 PS1="%{$fg[green]%}%D{%H:%M}  %{$fg[yellow]%}%m%{$reset_color%}::%{$fg[yellow]%}%1d%{$reset_color%} %"
@@ -27,19 +27,24 @@ PS1="%{$fg[green]%}%D{%H:%M}  %{$fg[yellow]%}%m%{$reset_color%}::%{$fg[yellow
 # export PATH=/opt/graalvm-ce-java19-22.3.1/bin:$PATH
 export GRAALVM_HOME=/opt/graalvm-jdk-21.0.1+12.1
 export M2_HOME=/opt/apache-maven-3.9.6/
-export TOOLCHAIN_DIR=/opt/x86_64-linux-musl-native
-export CC=$TOOLCHAIN_DIR/bin/gcc
+export CARGO_HOME=$HOME/.cargo/
+#export TOOLCHAIN_DIR=/opt/x86_64-linux-musl-native
+#export CC=$TOOLCHAIN_DIR/bin/gcc
 #export TOOLCHAIN_DIR=/usr/lib/gcc/x86_64-linux-gnu 
-#export CC=/usr/bin/gcc
+#export CC=$TOOLCHAIN_DIR/bin/gcc
+#export CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUNNER=$CC
 
 # Path Variables
 export PATH=/home/itwasneo/.local/bin:$PATH
 export PATH=/opt/nvim-linux64/bin:$PATH             # neovim
 export PATH=/opt/apache-maven-3.9.6/bin:$PATH       # maven
-export PATH=$TOOLCHAIN_DIR/bin:$PATH                # musl
+#export PATH=$TOOLCHAIN_DIR/bin:$PATH               # musl
 export PATH=/opt/upx-4.2.1-amd64_linux:$PATH        # upx
 export PATH=/opt/graalvm-jdk-21.0.1+12.1/bin:$PATH  # graalvm
+export PATH=/opt/gradle/gradle-8.6/bin:$PATH        # gradle
 export PATH=/opt/node-v20.10.0-linux-x64/bin:$PATH  # nodejs
+export PATH=/usr/local/go/bin:$PATH                 # Go
+export PATH=/home/iwn/.npm-global/bin:$PATH    # npm-global
 # export PATH=/home/itwasneo/.cargo/bin:$PATH
 # export PATH=/opt/apache-jmeter-5.5/bin:$PATH
 
@@ -87,12 +92,13 @@ alias cbmr='RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build --release'
 # alias z="zellij"
 
 # pkg-config
-# export PKG_CONIG_PATH=/usr/lib/pkgconfig
-# export PKG_CONFIG_ALLOW_CROSS=1
-# export PKG_CONFIG_ALL_STATIC=1
-# export PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=0
-# export OPENSSL_SYS_USE_PKG_CONFIG=1
-# export ZSTD_SYS_USE_PKG_CONFIG=1
+export PKG_CONIG_PATH=/usr/lib/pkgconfig
+export PKG_CONFIG_ALLOW_CROSS=1
+export PKG_CONFIG_ALL_STATIC=1
+export PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1
+export PKG_CONFIG_ALLOW_SYSTEM_LIBS=1
+export OPENSSL_SYS_USE_PKG_CONFIG=1
+export ZSTD_SYS_USE_PKG_CONFIG=1
 
 # Autostart inside Zellij session
 # eval "$(zellij setup --generate-auto-start zsh)"

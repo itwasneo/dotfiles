@@ -41,5 +41,4 @@ return {
             require("inc_rename").setup()
         end
     },
-
 }

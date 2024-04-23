@@ -16,7 +16,8 @@ vim.opt.updatetime = 200             -- For CursorHold responsiveness
 vim.opt.swapfile = false             -- No swap files
 vim.opt.formatoptions:append { 'r' } -- Add asterisks in block comments
 vim.opt.path:append { '**' }         -- Finding files - Seach down into subfolders
-vim.wo.relativenumber = true         -- Line Numbers
+vim.wo.number = true                 -- Current Line Number
+vim.wo.relativenumber = true         -- Relative Line Numbers
 vim.opt.wildignore:append { '*/node_modules/*' }
 vim.opt.backupskip = '/tmp/*,/private/tmp/*'
 -- ============================================================================

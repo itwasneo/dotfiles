@@ -29,6 +29,8 @@ return {
                 'html',
                 'toml',
                 'yaml',
+                'regex',
+                'bash',
                 'markdown',
                 'markdown_inline'
             },

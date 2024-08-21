@@ -49,30 +49,36 @@ return {
             local opts = { noremap = true, silent = true, buffer = bufnr }
             local keymap = vim.keymap
 
-            keymap.set("n", "gD", vim.lsp.buf.declaration, opts)                   -- Go to Declaration
-            keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)       -- Show references
-            keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)  -- Show implementations
-            keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)      -- Show definitions
-            keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- Show type definitions
-            keymap.set("n", "K", vim.lsp.buf.hover, opts)                          -- Show documentation for what is under cursor
-            keymap.set("n", "<C-k>", vim.diagnostic.goto_prev, opts)               -- Jump to previous diagnostic in buffer
-            keymap.set("n", "<C-j>", vim.diagnostic.goto_next, opts)               -- Jump to next diagnostic in buffer
-            keymap.set("n", "<C-l>",
+            keymap.set("n", "gD", vim.lsp.buf.declaration, opts)                    -- Go to Declaration
+            keymap.set("n", "gr", "<cmd>Lspsaga finder<CR>", opts)                  -- Show references
+            keymap.set("n", "gi", "<cmd>Lspsaga finder imp<CR>", opts)              -- Show implementations
+            keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts)         -- Show definitions
+            keymap.set("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>", opts)    -- Show type definitions
+            keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)                -- Show documentation for what is under cursor
+            keymap.set("n", "<C-k>", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- Jump to previous diagnostic in buffer
+            keymap.set("n", "<C-j>", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- Jump to next diagnostic in buffer
+            keymap.set(
+                "n",
+                "<C-l>",
                 '<cmd> lua vim.diagnostic.open_float({focusable = false, border="rounded", source = false, header = "", prefix = "  ",})<CR>',
-                opts) -- Show diagnostics for line
+                opts
+            ) -- Show diagnostics for line
         end
 
-        local function lsp_format_document(client)
-            if client.server_capabilities.documentFormattingProvider then
-                vim.api.nvim_exec(
-                    [[
-                    augroup Format
-                        autocmd! * <buffer>
-                        autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
-                    augroup END
-                    ]],
-                    false
-                )
+        local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+        local function lsp_format_document(client, bufnr)
+            if client.supports_method("textDocument/formatting") then
+                vim.api.nvim_clear_autocmds({
+                    group = augroup,
+                    buffer = bufnr,
+                })
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    group = augroup,
+                    buffer = bufnr,
+                    callback = function()
+                        vim.lsp.buf.format({ bufnr = bufnr })
+                    end
+                })
             end
         end
 
@@ -99,9 +105,31 @@ return {
         local on_attach = function(client, bufnr)
             lsp_keymaps(bufnr)
             lsp_highlight_document(client, bufnr)
-            lsp_format_document(client)
+            lsp_format_document(client, bufnr)
+
+            if client.name == "markdown_oxide" then
+                -- refresh codelens on TextChanged and InsertLeave as well
+                vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave", "CursorHold", "LspAttach" }, {
+                    buffer = bufnr,
+                    callback = vim.lsp.codelens.refresh,
+                })
+
+                -- trigger codelens refresh
+                vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
+            end
+
+            if client.name == "ruff_lsp" then
+                -- Disable hover in favor of Pyright
+                client.server_capabilities.hoverProvider = false
+            end
         end
 
+        --  local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+        --  capabilities.workspace = {
+        --     didChangeWatchedFiles = {
+        --         dynamicRegistration = true,
+        --     },
+        -- }
         local capabilities = cmp_nvim_lsp.default_capabilities()
         -- Lua ================================================================
         lspconfig.lua_ls.setup({
@@ -187,32 +215,65 @@ return {
         lspconfig.jdtls.setup({
             on_attach = on_attach,
             capabilities = capabilities,
-            cmd = { 'jdtls' },
+            cmd = { "jdtls" },
         })
         -- ====================================================================
 
         -- Docker =============================================================
-        lspconfig.dockerls.setup {}
+        lspconfig.dockerls.setup({})
         -- ====================================================================
 
         -- Markdown ===========================================================
-        lspconfig.marksman.setup {
+        lspconfig.marksman.setup({
             on_attach = on_attach,
             capabilities = capabilities,
-        }
+        })
 
         -- Bash ===============================================================
-        lspconfig.bashls.setup {
+        lspconfig.bashls.setup({
             on_attach = on_attach,
             capabilities = capabilities,
-        }
+        })
         -- ====================================================================
 
         -- Go =================================================================
-        lspconfig.gopls.setup {
+        lspconfig.gopls.setup({
             on_attach = on_attach,
-            capabilities = capabilities
-        }
+            capabilities = capabilities,
+        })
         -- ====================================================================
-    end
+
+        -- markdown-oxide =====================================================
+        lspconfig.markdown_oxide.setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+            filetypes = { "markdown" },
+        })
+        -- ====================================================================
+
+        -- ruff (python) ======================================================
+        lspconfig.ruff_lsp.setup({
+            on_attach = on_attach,
+            -- capabilities = capabilities,
+        })
+        -- ====================================================================
+
+        -- pyright (python) ===================================================
+        lspconfig.pyright.setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+            filetypes = { "python" },
+            settings = {
+                pyright = {
+                    disableOrganizeImports = true,
+                },
+                python = {
+                    analysis = {
+                        ignore = { "*" }
+                    }
+                }
+            }
+        })
+        -- ====================================================================
+    end,
 }

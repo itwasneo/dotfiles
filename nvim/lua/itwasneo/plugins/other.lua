@@ -3,15 +3,15 @@ return {
         "windwp/nvim-autopairs",
         event = { "BufReadPre", "BufNewFile" },
         opts = {
-            disable_filetype = { 'TelescopePrompt', 'vim' }
-        }
+            disable_filetype = { "TelescopePrompt", "vim" },
+        },
     },
     { -- Pair html tags
         "windwp/nvim-ts-autotag",
         event = { "BufReadPre", "BufNewFile" },
         opts = {
-            filetypes = { "html", "xml" }
-        }
+            filetypes = { "html", "xml" },
+        },
     },
     { -- For previewing colors in files (css)
         "norcalli/nvim-colorizer.lua",
@@ -19,7 +19,7 @@ return {
         opts = {
             css = { css = true },
             lua = { RRGGBB = true },
-        }
+        },
     },
     { -- Comment plugin
         "numToStr/Comment.nvim",
@@ -32,13 +32,6 @@ return {
         version = "*",
         config = function()
             vim.keymap.set("n", "\\cc", "<cmd>NoNeckPain<cr>", { noremap = true, silent = true })
-        end
-    },
-    { -- Rename symbol
-        "smjonas/inc-rename.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        config = function()
-            require("inc_rename").setup()
-        end
+        end,
     },
 }

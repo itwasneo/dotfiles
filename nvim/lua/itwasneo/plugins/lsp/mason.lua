@@ -8,6 +8,14 @@ return {
         local mason_lspconfig = require("mason-lspconfig")
 
         mason.setup()
-        mason_lspconfig.setup()
-    end
+        mason_lspconfig.setup({
+            ensure_installed = {
+                "bashls",
+                "pyright",
+                "rust_analyzer",
+                "lua_ls",
+                "markdown_oxide",
+            },
+        })
+    end,
 }

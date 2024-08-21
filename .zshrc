@@ -20,7 +20,7 @@ setopt hist_ignore_space # Trick to prevent particular entries from being record
 #export OPENSSL_STATIC=0
 
 # Prompt
-PS1="%{$fg[green]%}%D{%H:%M}  %{$fg[yellow]%}%m%{$reset_color%}::%{$fg[yellow]%}%1d%{$reset_color%} %"
+PS1="%{$fg[green]%}%D{%H:%M} 󰶵 %{$fg[yellow]%}%m%{$fg[green]%}  %{$fg[yellow]%}%1d%{$reset_color%} %"
 
 
 # Java Paths
@@ -36,15 +36,18 @@ export CARGO_HOME=$HOME/.cargo/
 
 # Path Variables
 export PATH=/home/itwasneo/.local/bin:$PATH
-export PATH=/opt/nvim-linux64/bin:$PATH             # neovim
-export PATH=/opt/apache-maven-3.9.6/bin:$PATH       # maven
-#export PATH=$TOOLCHAIN_DIR/bin:$PATH               # musl
-export PATH=/opt/upx-4.2.1-amd64_linux:$PATH        # upx
-export PATH=/opt/graalvm-jdk-21.0.1+12.1/bin:$PATH  # graalvm
-export PATH=/opt/gradle/gradle-8.6/bin:$PATH        # gradle
-export PATH=/opt/node-v20.10.0-linux-x64/bin:$PATH  # nodejs
-export PATH=/usr/local/go/bin:$PATH                 # Go
-export PATH=/home/iwn/.npm-global/bin:$PATH    # npm-global
+export PATH=/opt/nvim-linux64/bin:$PATH                     # neovim
+export PATH=/opt/apache-maven-3.9.6/bin:$PATH               # maven
+#export PATH=$TOOLCHAIN_DIR/bin:$PATH                       # musl
+export PATH=/opt/upx-4.2.1-amd64_linux:$PATH                # upx
+export PATH=/opt/graalvm-jdk-21.0.1+12.1/bin:$PATH          # graalvm
+export PATH=/opt/gradle/gradle-8.6/bin:$PATH                # gradle
+export PATH=/opt/node-v20.10.0-linux-x64/bin:$PATH          # nodejs
+export PATH=/usr/local/go/bin:$PATH                         # Go
+export PATH=/home/iwn/.npm-global/bin:$PATH                 # npm-global
+export PATH=/opt/circleci-cli_0.1.30549_linux_amd64:$PATH   # circleci
+export PATH=/home/iwn/.local/bin:$PATH                      # after pip upgrade, it warned about this
+export PATH=/home/iwn/.sdkman/candidates/java/17.0.11-oracle:$PATH
 # export PATH=/home/itwasneo/.cargo/bin:$PATH
 # export PATH=/opt/apache-jmeter-5.5/bin:$PATH
 
@@ -65,8 +68,9 @@ alias ll='ls -AGghl --color=auto'
 # Navigation
 alias gg='cd ~/git'
 alias g~='cd ~'
-alias gw='cd ~/workspace'
-alias gsb='cd ~/git/sb'
+alias ws='cd ~/workspace'
+alias sb='cd ~/git/sb'
+alias zs='cd ~/zs'
 
 # Docker
 alias dcud='docker-compose up -d'
@@ -102,3 +106,11 @@ export ZSTD_SYS_USE_PKG_CONFIG=1
 
 # Autostart inside Zellij session
 # eval "$(zellij setup --generate-auto-start zsh)"
+
+# Airflow
+export AIRFLOW_HOME=~/airflow
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

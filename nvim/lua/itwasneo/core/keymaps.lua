@@ -46,4 +46,5 @@ keymap.set("n", "<space>", ":")
 keymap.set("n", "<leader>rn", ":IncRename ")
 
 -- Insert Date
-keymap.set("n", "<leader>D", ":put =strftime('# %a %Y-%m-%d %H:%M%z')<CR>")
+keymap.set("n", "<leader>T", ":put =strftime('%a %Y-%m-%d %H:%M%z')<CR>")
+keymap.set("n", "<leader>D", ":put =strftime('%a %b %d, %Y')<CR>")

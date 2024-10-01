@@ -192,7 +192,7 @@ return {
         -- ====================================================================
 
         -- Typescript/Javascript ==============================================
-        lspconfig.tsserver.setup({
+        lspconfig.ts_ls.setup({
             on_attach = on_attach,
             capabilities = capabilities,
         })
@@ -203,13 +203,6 @@ return {
             on_attach = on_attach,
             capabilities = capabilities,
         })
-
-        -- Ada ================================================================
-        lspconfig.als.setup({
-            on_attach = on_attach,
-            capabilities = capabilities,
-        })
-        -- ====================================================================
 
         -- Java ===============================================================
         lspconfig.jdtls.setup({

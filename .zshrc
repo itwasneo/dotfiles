@@ -10,11 +10,15 @@ fi
 # source/load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
+# avoid lagging due to nvm load
+export NVM_LAZY_LOAD=true
+
 # zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+zinit light lukechilds/zsh-nvm
 
 #autoload -U colors && colors
 autoload -Uz compinit
@@ -70,6 +74,8 @@ alias dcud='docker-compose up -d'
 alias dcd='docker-compose down'
 alias dca='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 
+alias clip="xclip -sel cli"
+
 function drmid {
     if [ "$1" = "-f" ]; then
         echo "Flag -f detected"
@@ -81,15 +87,15 @@ function drmid {
     fi
 }
 
-function enable_sdkman {
-	if ! command -v -- "sdk" > /dev/null 2>%1; then
-		source "$HOME/.sdkman/bin/sdkman-init.sh"
-	fi
-}
-
 # cargo
 alias cbm='RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build'
 alias cbmr='RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build --release'
 
-export PATH=$PATH:/opt/idea-IC-243.21565.193/bin	# Intellij IDEA Community Edition
-export SDKMAN_DIR=$HOME/.sdkman				# sdkman	
+export PATH=$PATH:/opt/idea-IC-243.21565.193/bin						# Intellij IDEA Community Edition
+export PATH=$PATH:/opt/nvim-linux64/bin									# neovim
+export SDKMAN_DIR=$HOME/.sdkman											# sdkman	
+
+
+export NVM_DIR="$HOME/.nvm"
+
+source ~/workspace/script/enable_sdkman.sh

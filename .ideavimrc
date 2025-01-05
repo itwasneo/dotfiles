@@ -1,0 +1,25 @@
+source ~/.vimrc
+
+set scrolloff=5
+set incsearch
+set relativenumber
+set number
+set showmode
+
+map Q gq
+set visualbell
+nmap <space> :
+nmap <tab> <Action>(Switcher)
+nmap gd :action GotoDeclaration<CR>
+nmap <C-j> :action GotoNextError<CR>
+nmap <C-k> :action GotoPreviousError<CR>
+nmap <C-d> :action CloseContent<CR>
+nmap <F1> <Action>(ToggleDistractionFreeMode)
+nmap ;r <Action>(FindInPath)
+map ;; <Action>(SearchEverywhere)
+nmap ]f <Action>(MethodDown)
+nmap [f <Action>(MethodUp)
+
+map \r <Action>(ReformatCode)
+map \b <Action>(ToggleLineBreakpoint)
+map \\ <Action>(RecentFiles)

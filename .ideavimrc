@@ -16,6 +16,7 @@ nmap <C-k> :action GotoPreviousError<CR>
 nmap <C-d> :action CloseContent<CR>
 nmap <F1> <Action>(ToggleDistractionFreeMode)
 nmap ;r <Action>(FindInPath)
+nmap ;f <Action>(GotoFile)
 map ;; <Action>(SearchEverywhere)
 nmap ]f <Action>(MethodDown)
 nmap [f <Action>(MethodUp)

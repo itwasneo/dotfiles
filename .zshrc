@@ -15,13 +15,9 @@ export NVM_LAZY_LOAD=true
 
 # zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light lukechilds/zsh-nvm
-
-#autoload -U colors && colors
-autoload -Uz compinit
 
 # keybindings
 bindkey -e
@@ -47,7 +43,12 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
-zinit cdreplay -q
+zi for \
+	atload"zicompinit; zicdreplay" \
+	blockf\
+	lucid\
+	wait\
+	zsh-users/zsh-completions
 
 # fzf integration
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -90,12 +91,13 @@ function drmid {
 # cargo
 alias cbm='RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build'
 alias cbmr='RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build --release'
+alias activate_sdkman="source $HOME/.sdkman/bin/sdkman-init.sh"
 
-export PATH=$PATH:/opt/idea-IC-243.21565.193/bin						# Intellij IDEA Community Edition
-export PATH=$PATH:/opt/nvim-linux64/bin									# neovim
-export SDKMAN_DIR=$HOME/.sdkman											# sdkman	
+# export PATH=$PATH:/opt/idea-IC-243.21565.193/bin						# Intellij IDEA Community Edition
+export PATH=$PATH:$HOME/.local/bin									# neovim
+# export SDKMAN_DIR=$HOME/.sdkman											# sdkman	
 
 
 export NVM_DIR="$HOME/.nvm"
 
-source ~/workspace/script/enable_sdkman.sh
+# source ~/workspace/script/enable_sdkman.sh

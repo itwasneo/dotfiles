@@ -25,10 +25,10 @@ while getopts "hsu" opt; do
                 dest_dir="$HOME"
                 
                 # tmux ------------------------------------------------------------------------
-                filename=".tmux.conf"
-                if cp "$src_dir/$filename" "$dest_dir"; then
-                    echo -e "${GREEN}  ${NC}tmux is ready."
-                fi
+               #filename=".tmux.conf"
+               #if cp "$src_dir/$filename" "$dest_dir"; then
+               #    echo -e "${GREEN}  ${NC}tmux is ready."
+               #fi
                 # =============================================================================
 
 
@@ -61,10 +61,10 @@ while getopts "hsu" opt; do
                 dest_dir="$HOME/git/dotfiles"
                 
                 # tmux ------------------------------------------------------------------------
-                filename=".tmux.conf"
-                if cp "$src_dir/$filename" "$dest_dir"; then
-                    echo -e "${GREEN}  ${NC}tmux configuration is updated."
-                fi
+               #filename=".tmux.conf"
+               #if cp "$src_dir/$filename" "$dest_dir"; then
+               #    echo -e "${GREEN}  ${NC}tmux configuration is updated."
+               #fi
                 # =============================================================================
 
 

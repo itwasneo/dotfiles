@@ -93,9 +93,13 @@ alias cbm='RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build'
 alias cbmr='RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build --release'
 alias activate_sdkman="source $HOME/.sdkman/bin/sdkman-init.sh"
 
-# export PATH=$PATH:/opt/idea-IC-243.21565.193/bin						# Intellij IDEA Community Edition
-export PATH=$PATH:$HOME/.local/bin									# neovim
-# export SDKMAN_DIR=$HOME/.sdkman											# sdkman	
+# PATH VARIABLES
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.sdkman/candidates/detekt/current/bin
+export PATH=$PATH:$HOME/.sdkman/candidates/java/current/bin
+
+export JAVA_OPTS="--enable-native-access=ALL-UNNAMED"
+export SDKMAN_DIR="$HOME/.sdkman"
 
 
 export NVM_DIR="$HOME/.nvm"

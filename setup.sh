@@ -13,14 +13,13 @@ DOTFILES_REPO="https://github.com/itwasneo/dotfiles.git"
 NERD_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip"
 NERD_FONT_ZIP="/tmp/JetBrainsMono.zip"
 NERD_FONT_DIR="$HOME_DIR/.local/share/fonts/JetBrainsMono"
-NEOVIM_INSTALLATION_URL="https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage"
-NEOVIM_EXECUTABLE_PATH="$HOME_DIR/.local/bin/nvim"
 TEAMSPEAK_TAR="teamspeak-client.tar.gz"
 TEAMSPEAK_DOWNLOAD_URL="https://files.teamspeak-services.com/pre_releases/client/6.0.0-beta2/$TEAMSPEAK_TAR"
 TEAMSPEAK_INSTALLATION_PATH="/opt/teamspeak"
 TEAMSPEAK_EXECUTABLE_PATH="$HOME_DIR/.local/bin/teamspeak"
 SDKMAN_INSTALLATION_PATH="/opt/sdkman"
 SDKMAN_EXECUTABLE_PATH="$HOME_DIR/.local/bin/sdkman"
+VIM_EXECUTABLE_PATH="/usr/bin/vim"
 
 
 mkdir -p "$LOCAL_GIT_DIR"
@@ -37,8 +36,8 @@ apt install -y sudo passwd
 echo "[STEP 2] Adding user $USERNAME to sudo group..."
 usermod -aG sudo "$USERNAME"
 
-echo "[STEP 3] Installing essential utilities: vim, curl, wget, htop, iproute2, unzip, ripgrep, fd-find, luarocks, pip3"
-apt install -y vim curl wget htop iproute2 unzip ripgrep fd-find luarocks python3-pip
+echo "[STEP 3] Installing essential utilities: vim, curl, telnet, wget, htop, iproute2, unzip, ripgrep, fd-find, luarocks, pip3, python venv"
+apt install -y vim curl telnet wget htop iproute2 unzip ripgrep fd-find luarocks python3-pip python3.11-venv
 
 echo "[STEP 4] Installing build-essential(gcc, make, etc.)"
 apt install -y build-essential
@@ -50,8 +49,8 @@ echo "[STEP 6] Installing zsh"
 apt install -y zsh
 chsh -s /bin/zsh "$USERNAME"
 
-echo "[STEP 7] Installing Xorg, i3 and xinit"
-apt install -y xorg i3 xinit x11-xserver-utils dbus-x11 xfonts-base x11-utils
+echo "[STEP 7] Installing Xorg, i3, i3-dmenu-desktop and xinit"
+apt install -y xorg i3 xinit x11-xserver-utils dbus-x11 xfonts-base x11-utils j4-dmenu-desktop
 
 grep -q '^exec i3$' $HOME_DIR/.xinitrc 2>/dev/null || echo "exec i3" >> $HOME_DIR/.xinitrc
 
@@ -139,22 +138,20 @@ else
 	echo "[STEP 20] Rust toolchain already installed"
 fi
 
-mkdir -p $HOME_DIR/.local/bin
-if ! command -v $NEOVIM_EXECUTABLE_PATH >/dev/null; then
-	echo "[SETUP 21] Installing neovim"
-	curl -Lo $NEOVIM_EXECUTABLE_PATH $NEOVIM_INSTALLATION_URL
-	chmod +x $NEOVIM_EXECUTABLE_PATH  
-	chown $USERNAME:$USERNAME $NEOVIM_EXECUTABLE_PATH
-else
-	echo "[SETUP 21] neovim is already installed"
-fi
-
 if [ ! -d "$LOCAL_GIT_DIR/dotfiles" ]; then
-	echo "[SETUP 22] Cloning dotfiles"
+	echo "[SETUP 21] Cloning dotfiles"
 	sudo -u $USERNAME git clone "$DOTFILES_REPO" "$LOCAL_GIT_DIR/dotfiles"
 else
-	echo "[SETUP 22] dotfiles repository already cloned"
+	echo "[SETUP 21] dotfiles repository already cloned"
 fi
+
+if ! command -v $VIM_EXECUTABLE_PATH >/dev/null; then
+	echo "[SETUP 22] Setting up custom vim"
+	$LOCAL_GIT_DIR/dotfiles/custom_vim.sh
+else
+	echo "[SETUP 22] Custom vim is already installed"
+fi
+
 
 if ! command -v $TEAMSPEAK_EXECUTABLE_PATH >/dev/null; then
 	echo "[SETUP 23] Installing teamspeak"
@@ -171,7 +168,35 @@ fi
 echo "[SETUP 24] Installing sdkman"
 sudo -u $USERNAME bash -c "curl -s 'https://get.sdkman.io?ci=true&rcupdate=false' | bash"
 
-# [ ] RUN dotfiles configuration script
+echo "[SETUP 25] Installing xcursor-themes to change mouse pointer size"
+sudo apt install xcursor-themes
+
+if ! grep -q "XCURSOR_THEME=Adwaita" "$HOME_DIR/.xinitrc"; then
+	echo "[STEP 26] Changing cursor size"
+	sed -i '/exec i3/i export XCURSOR_THEME=Adwaita' "$HOME_DIR/.xinitrc"
+	sed -i '/exec i3/i export XCURSOR_SIZE=48' "$HOME_DIR/.xinitrc"
+	sed -i '/exec i3/i xrdb -merge ~/.Xresources' "$HOME_DIR/.xinitrc"
+	sed -i '/exec i3/i xsetroot -cursor_name left_ptr' "$HOME_DIR/.xinitrc"
+else
+	echo "[STEP 26] Cursor already resized"
+fi
+
+if ! command -v /usr/local/bin/ktlint >/dev/null; then
+	echo "[STEP 27] Installing ktlint"
+	curl -sSLO https://github.com/pinterest/ktlint/releases/download/1.5.0/ktlint && chmod a+x ktlint && mv ktlint /usr/local/bin/
+else
+	echo "[STEP 27] ktlint is already installed"
+fi
+
+echo "[STEP 27] Installing tmux"
+apt install -y tmux
+
+echo "[STEP 28] Installing libre office"
+apt install -y libreoffice libreoffice-gtk3 \
+    libreoffice-writer \
+    libreoffice-calc \
+    libreoffice-draw \
+    fonts-dejavu
 
 echo "[CLEANING...]"
 apt autoremove -y || true

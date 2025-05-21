@@ -1,28 +1,24 @@
 set nocompatible
 set number
 set relativenumber
-set autoindent
-set smartindent
-set tabstop=4
+set expandtab
 set shiftwidth=4
+set softtabstop=4
+set tabstop=4
 set mouse=a
 set incsearch
 set ignorecase
 set smartcase
-
-if has('clipboard')
-	set clipboard=unnamedplus
-endif
-
+set laststatus=2
+set clipboard=unnamedplus
 set grepprg=rg\ --vimgrep
+set termguicolors
+set background=dark
+colorscheme retrobox
 
 syntax on
 
-"Kotlin: Use kotlinc to compile the current file
-autocmd FileType kotlin setlocal makeprg=kotlinc\ %
-
-" autocmd QuickFixCmdPost [^l]* rightbelow vertical 60copen
-autocmd QuickFixCmdPost [^l]* if empty(getqflist()) | cclose | else | rightbelow vertical 60copen | endif
+autocmd QuickFixCmdPost make cwindow
 
 "Jump to the next quickfix error
 nnoremap ]q :cnext<CR>
@@ -38,3 +34,8 @@ nnoremap <leader>qc :cclose<CR>
 
 "Changing space button to :
 nnoremap <Space> :
+
+" Ruff (for python)
+let g:ruff_path = expand('$VIRTUAL_ENV') != '' ? expand('$VIRTUAL_ENV') . '/bin/ruff' : 'ruff'
+" command! RuffLint execute '!' . g:ruff_path . ' check .'
+command! RuffQuickfix execute 'write | cgetexpr system("' . g:ruff_path . ' check . --no-cache") | cwindow'

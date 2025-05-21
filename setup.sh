@@ -120,6 +120,9 @@ else
 	echo "[STEP 17] JetBrains Mono Nerd Font already installed"
 fi
 
+echo "[PATCH] Patching font for emojis"
+apt install -y fonts-noto-color-emoji
+
 if grep -q '^font ' "$i3_CONFIG_FILE"; then
 	echo "[STEP 18] Setting font"
 	sed -i 's|^font .*|font pango:JetBrainsMono Nerd Font 11|' "$i3_CONFIG_FILE"
@@ -197,15 +200,6 @@ apt install -y libreoffice libreoffice-gtk3 \
     libreoffice-calc \
     libreoffice-draw \
     fonts-dejavu
-
-echo "[STEP 29] Installing gh (Github CLI tool)"
-sudo mkdir -p -m 755 /etc/apt/keyrings \
-&& out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \
-&& cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
-&& sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
-&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-&& sudo apt update \
-&& sudo apt install gh -y
 
 echo "[CLEANING...]"
 apt autoremove -y || true

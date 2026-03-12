@@ -19,39 +19,7 @@ This is for updating and setting up the local configuration files of following p
 
 - zsh
 - tmux
-- NeoVim
-
-## About NeoVim
-
-Although I'm still a dummy when it comes to **vim**, I configured this setup by myself. It is **very very simplistic** and serves
-enough features. It is entirely lua based.There are couple of links that I want to share which also influenced
-this configuration:
-
-- [devaslife's NeoVim setup video](https://www.youtube.com/watch?v=ajmK0ZNcM4Q)
-- [devaslife's NeoVim setup article](https://blog.inkdrop.app/my-neovim-setup-for-react-typescript-tailwind-css-etc-in-2022-a7405862c9a4)
-- [chris@machine's NeoVim IDE from Scratch series](https://www.youtube.com/watch?v=ctH-a-1eUME&list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ)
-- [Josean Martinez's youtube channel](https://www.youtube.com/@joseanmartinez/videos): This one has the latest structural approach, I really liked it.
-
-### Some features that I currently use
-
-I use **lazy** for plugin management. (I was using **packer** before; so during the transition I made a huge refactor.)
-
-- Completion
-- LSP (tsserver, rust-analyzer, lua_ls, cssls)
-  - mason
-  - lspconfig
-  - lspkind
-- Git
-  - gitsigns
-  - git
-- Treesitter (with textobjects)
-- Telescope
-- Silense colorscheme [my own theme](https://github.com/itwasneo/silense.nvim)
-- Other
-  - autopairs _Pair Brackets_
-  - autotag _Pair Html tags_
-  - nvim-comment _Comment Toggler_
-  - noice _UI component Library (10/10 beautiful addition)
+- NeoVim with NvChad
 
 ## About tmux with NeoVim conflict
 

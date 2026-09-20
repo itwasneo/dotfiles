@@ -1,31 +1,49 @@
-# dotfiles ⚙️
+# dotfiles
 
-set deez dots
+Personal Linux/macOS-ish configuration files managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
-## About **dotfiles** script
+## Layout
 
-I'm trying to convert my entire development setup from bash scripts to ansible playbooks progressively. This file serves as a
-starting point for the further automation with ansible playbooks. If you want to learn about the details checkout:
+Each top-level directory is a Stow package that mirrors paths under `$HOME`.
 
-- [TheAltF4Stream's great video](https://www.youtube.com/watch?v=V_Cj_p6se3k)
-
-## About .sh files
-
-I'm configuring and keeping my setups updated through .sh files.
-
-### dot.sh
-
-This is for updating and setting up the local configuration files of following programs:
-
-- zsh
-- tmux
-- NeoVim with NvChad
-
-## About tmux with NeoVim conflict
-
-I don't know why, but I spent too much time to support RGB colors in NeoVim inside a tmux session. Following line that
-should reside in your `.tmux.conf` file was the answer for me.
-
+```text
+zsh/        -> ~/.zshrc
+tmux/       -> ~/.tmux.conf
+alacritty/  -> ~/.config/alacritty/alacritty.toml
+nvim/       -> ~/.config/nvim
+vim/        -> ~/.vimrc
+ideavim/    -> ~/.ideavimrc
 ```
-set-option -s terminal-features ",*256col*:RGB"
+
+Legacy scripts that are not part of the normal install flow live under `scripts/legacy/`.
+
+## Install
+
+Install GNU Stow first:
+
+```bash
+sudo apt install stow
 ```
+
+Then clone this repo and stow packages individually:
+
+```bash
+cd ~/git/dotfiles
+stow zsh
+stow tmux
+stow alacritty
+stow nvim
+stow vim
+stow ideavim
+```
+
+## Uninstall links
+
+```bash
+stow -D zsh tmux alacritty nvim vim ideavim
+```
+
+## Notes
+
+- The repo is the source of truth. Edit files here, not the symlink targets.
+- `lazy-lock.json` is ignored because it is machine/plugin-state specific for this setup.

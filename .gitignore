@@ -1,2 +1,10 @@
 # Neovim plugin lockfile is machine-specific for this setup
 **/lazy-lock.json
+
+# Pi private/runtime state
+**/auth.json
+**/sessions/
+**/*.log
+**/models-store.json
+**/trust.json
+**/bin/

@@ -13,6 +13,7 @@ alacritty/  -> ~/.config/alacritty/alacritty.toml
 nvim/       -> ~/.config/nvim
 vim/        -> ~/.vimrc
 ideavim/    -> ~/.ideavimrc
+pi/         -> ~/.pi/agent selected config, extensions, and skills
 ```
 
 Legacy scripts that are not part of the normal install flow live under `scripts/legacy/`.
@@ -35,15 +36,17 @@ stow alacritty
 stow nvim
 stow vim
 stow ideavim
+stow pi
 ```
 
 ## Uninstall links
 
 ```bash
-stow -D zsh tmux alacritty nvim vim ideavim
+stow -D zsh tmux alacritty nvim vim ideavim pi
 ```
 
 ## Notes
 
 - The repo is the source of truth. Edit files here, not the symlink targets.
 - `lazy-lock.json` is ignored because it is machine/plugin-state specific for this setup.
+- Pi credentials, sessions, logs, model cache, trust decisions, and downloaded bins are ignored.

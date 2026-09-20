@@ -1,0 +1,7 @@
+{
+  "tui.altScreen.pageDown": [],
+  "tui.altScreen.top": [],
+  "tui.select.pageDown": [],
+  "tui.editor.cursorLineStart": ["ctrl+home", "ctrl+a"],
+  "tui.editor.pageDown": ["ctrl+pageDown"]
+}

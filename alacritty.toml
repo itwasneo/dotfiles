@@ -1,0 +1,67 @@
+# --- GENERAL SETTINGS ---
+[general]
+live_config_reload = true
+import = [
+    "~/.config/alacritty/themes/themes/solarized_osaka.toml"
+]
+
+# --- WINDOW ---
+[window]
+opacity = 0.92      # Slight transparency for a modern look
+blur = true         # Works on macOS/KDE/Gnome with supported composers
+
+# Decorations: "Full", "None", or "Transparent" (macOS)
+decorations = "Full"
+startup_mode = "Windowed"
+dynamic_title = true
+
+# --- SCROLLING ---
+[scrolling]
+history = 10000
+multiplier = 3
+
+# --- FONT ---
+[font]
+size = 13.0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Bold Italic"
+
+# --- CURSOR ---
+[cursor]
+style = { shape = "Block", blinking = "On" }
+thickness = 0.10
+
+# --- TERMINAL ---
+[terminal]
+# Ensure your default shell is set correctly here
+shell = { program = "/bin/zsh", args = ["--login"] }
+
+# --- KEYBINDINGS ---
+[[keyboard.bindings]]
+key = "N"
+mods = "Control|Shift"
+action = "CreateNewWindow"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"

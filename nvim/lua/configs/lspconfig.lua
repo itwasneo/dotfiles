@@ -3,21 +3,19 @@ require("nvchad.configs.lspconfig").defaults()
 local servers = {
   "clangd",
   "rust_analyzer",
-  "marksman",
+  -- "marksman",
   "neocmakelsp",
   "basedpyright",
   "ruff",
   -- "html",
   -- "cssls"
 }
-vim.lsp.enable(servers)
-
 -- rust_analyzer
 vim.lsp.config.rust_analyzer = {
   settings = {
     ["rust-analyzer"] = {
       cargo = { allFeatures = true },
-      checkOnSave = {
+      check = {
         command = "clippy",
       },
     },
@@ -92,5 +90,7 @@ vim.lsp.config.ruff = {
     },
   },
 }
+
+vim.lsp.enable(servers)
 
 -- read :h vim.lsp.config for changing options of lsp servers

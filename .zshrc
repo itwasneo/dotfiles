@@ -1,57 +1,16 @@
-# direcotory to store zinit and plugins
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+# --- HISTORY SETTINGS ---
+HISTFILE=~/.zsh_history    # Where the history is stored
+HISTSIZE=100000             # How many lines to keep in the current session
+SAVEHIST=100000             # How many lines to save in the history file
 
-# download zinit, if it is not existed
-if [ ! -d "${ZINIT_HOME}" ]; then
-	mkdir -p "$(dirname $ZINIT_HOME)"
-	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
+# --- HISTORY BEHAVIOR ---
+setopt append_history       # Don't overwrite the file, append to it
+setopt inc_append_history   # Write to the file as soon as a command is executed
+setopt share_history        # Share history between all active sessions/tmux windows
+setopt hist_ignore_dups     # Don't record a command if it was just recorded
+setopt hist_ignore_space    # Don't record commands starting with a space
 
-# source/load zinit
-source "${ZINIT_HOME}/zinit.zsh"
-
-# avoid lagging due to nvm load
-export NVM_LAZY_LOAD=true
-
-# zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
-zinit light lukechilds/zsh-nvm
-
-# keybindings
-bindkey -e
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
-
-# history
-HIST_SIZE=5000
-HISTFILE=~/.zsh_history
-SAVEHIST=$HIST_SIZE
-HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
-
-# completion style
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-
-zi for \
-	atload"zicompinit; zicdreplay" \
-	blockf\
-	lucid\
-	wait\
-	zsh-users/zsh-completions
-
-# fzf integration
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+autoload -U colors && colors
 
 # Prompt
 PS1="%{$fg[green]%}%D{%H:%M} 󰶵 %{$fg[yellow]%}%m%{$fg[green]%}  %{$fg[yellow]%}%1d%{$reset_color%} %"
@@ -70,38 +29,87 @@ alias gg='cd ~/git'
 alias g~='cd ~'
 alias gw='cd ~/workspace'
 
-# Docker
-alias dcud='docker-compose up -d'
-alias dcd='docker-compose down'
-alias dca='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+# copy clipboard
+alias cpwd='pwd | tr -d "\n" | xclip -selection clipboard'
 
-alias clip="xclip -sel cli"
+# Add custom completions to fpath
+fpath=(~/.zsh/completions $fpath)
 
-function drmid {
-    if [ "$1" = "-f" ]; then
-        echo "Flag -f detected"
-        docker rmi -f $(docker images -f "dangling=true" -q)
-    elif [ -z "$1" ]; then
-        docker rmi $(docker images -f "dangling=true" -q)
-    else
-        echo "Invalid argument. Only '-f' for 'force' is allowed."
-    fi
+# Faster compinit: only regenerate cache if it's older than 24h
+autoload -Uz compinit
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.m-1) ]]; then
+  compinit -C
+else
+  compinit
+fi
+
+# anythingllm start
+# Function to start AnythingLLM
+start_anythingllm() {
+    export STORAGE_LOCATION="$HOME/anythingllm"
+    mkdir -p "$STORAGE_LOCATION"
+    touch "$STORAGE_LOCATION/.env"
+    
+    # Check if container is already running and remove it to avoid name conflicts
+    docker rm -f anythingllm 2>/dev/null
+    
+    docker run -d -p 3001:3001 \
+    --name anythingllm \
+    -v "${STORAGE_LOCATION}:/app/server/storage" \
+    -v "${STORAGE_LOCATION}/.env:/app/server/.env" \
+    -e STORAGE_DIR="/app/server/storage" \
+    mintplexlabs/anythingllm
+    
+    echo "AnythingLLM is starting at http://localhost:3001"
 }
 
-# cargo
-alias cbm='RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build'
-alias cbmr='RUSTFLAGS="-C link-arg=-fuse-ld=mold" cargo build --release'
-alias activate_sdkman="source $HOME/.sdkman/bin/sdkman-init.sh"
+# OLLAMA
+export OLLAMA_MAX_VRAM_OVERHEAD=0
+export OLLAMA_FLASH_ATTENTION=1
+export OLLAMA_KV_CACHE_TYPE=q4_0
 
-# PATH VARIABLES
-export PATH=$PATH:$HOME/.local/bin
-export PATH=$PATH:$HOME/.sdkman/candidates/detekt/current/bin
-export PATH=$PATH:$HOME/.sdkman/candidates/java/current/bin
+# JAVA
+export JAVA_HOME=$HOME/.sdkman/candidates/java/current
 
-export JAVA_OPTS="--enable-native-access=ALL-UNNAMED"
+# HADOOP
+export HADOOP_HOME=/usr/local/hadoop
+export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HADOOP_HOME/lib/native
+
+# SPARK
+export SPARK_HOME=/opt/spark/current
+export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+export SPARK_LOCAL_IP="127.0.0.1"
+
+# UV
+. "$HOME/.local/bin/env"
+
+# CLAUDE
+CLAUDE_CODE_MAX_OUTPUT_TOKENS=100000
+
+# GO
+export PATH=$PATH:/usr/local/go/bin
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 
-export NVM_DIR="$HOME/.nvm"
+# fnm
+FNM_PATH="/home/itwasneo/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --shell zsh)"
+fi
 
-# source ~/workspace/script/enable_sdkman.sh
+# bun completions
+[ -s "/home/itwasneo/.bun/_bun" ] && source "/home/itwasneo/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+[[ -f ~/.zsh_functions ]] && source ~/.zsh_functions
+export PI_DICTATE_ARECORD_DEVICE=pipewire
